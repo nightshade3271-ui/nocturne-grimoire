@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Nocturne Grimoire 🕯️ by Vespera Nocturne · @vesperanocturne</title>
+  <meta name="description" content="Dark Mystic Horary Crystal Pendulum, Twin-Chart Synastry, 360° Natal Grimoire & Chaldean Planetary Hours by Vespera Nocturne (@vesperanocturne)." />
+  <meta name="theme-color" content="#08030B" />
+  <link rel="manifest" href="./manifest.json" />
+  <link rel="icon" type="image/jpeg" href="./images/vespera_photo.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <div class="ambient-glow glow-crimson"></div>
+  <div class="ambient-glow glow-amber"></div>
+  <div class="ambient-glow glow-violet"></div>
+
+  <div class="grimoire-shell">
+    <!-- Ornate Top Arcane Header -->
+    <header class="arcane-header grimoire-frame">
+      <div class="brand-cluster">
+        <div class="portrait-medallion">
+          <img src="./images/vespera_photo.jpg" alt="Vespera Nocturne" class="medallion-img" />
+          <span class="candle-dot" title="Live NASA JPL Ephemeris"></span>
+        </div>
+        <div>
+          <div class="title-line">
+            <h1>Nocturne Grimoire 🕯️</h1>
+            <span class="arcane-badge">OCCULT EPHEMERIS</span>
+          </div>
+          <p class="subtitle-line">Vespera Nocturne · @vesperanocturne · Horary, Synastry &amp; Shadow</p>
+        </div>
+      </div>
+
+      <button id="open-birth-modal-btn" class="btn-enter-chart-cta">
+        <span class="cta-spark">✨ ENTER YOUR BIRTH CHART</span>
+        <span id="active-user-pill" class="cta-sub">Currently viewing: Sample Chart (Tap to change)</span>
+      </button>
+    </header>
+
+    <!-- Prominent Always-Visible Quick Birth Input Banner -->
+    <section class="quick-birth-banner grimoire-frame">
+      <div class="quick-banner-head">
+        <div>
+          <span class="sigil-tag">❖ PERSONALIZE EVERY READING IN SECONDS</span>
+          <h3>Enter Your Birth Date, Time &amp; City Below</h3>
+        </div>
+        <span class="worldwide-pill">🌍 11M+ Cities Worldwide</span>
+      </div>
+      <form id="inline-birth-form" class="inline-birth-grid">
+        <label class="field-box">
+          <span>Your Name</span>
+          <input type="text" id="inline-name" placeholder="Your Name" required />
+        </label>
+        <label class="field-box">
+          <span>Birth Date</span>
+          <input type="date" id="inline-date" required />
+        </label>
+        <label class="field-box">
+          <span>Exact Birth Time</span>
+          <input type="time" id="inline-time" required />
+        </label>
+        <label class="field-box">
+          <span>Birth City (Any City Worldwide)</span>
+          <input type="text" id="inline-city" placeholder="e.g. Chicago, London, Paris, Tokyo" required />
+        </label>
+        <button type="submit" class="btn-cast-gold">🕯️ Cast My Live Chart</button>
+      </form>
+    </section>
+
+    <!-- Top Arcane Ribbon Navigation (Distinct from Bottom Nav Style) -->
+    <nav class="arcane-ribbon-nav grimoire-frame" aria-label="Grimoire Navigation">
+      <button class="nav-tab active" data-tab="today">
+        <span class="t-ico">🕯️</span>
+        <span>Tonight’s Omen</span>
+      </button>
+      <button class="nav-tab" data-tab="pendulum">
+        <span class="t-ico">🔮</span>
+        <span>Crystal Pendulum</span>
+      </button>
+      <button class="nav-tab" data-tab="synastry">
+        <span class="t-ico">🩸</span>
+        <span>Twin Synastry</span>
+      </button>
+      <button class="nav-tab" data-tab="chart">
+        <span class="t-ico">🧭</span>
+        <span>360° Natal Wheel</span>
+      </button>
+      <button class="nav-tab" data-tab="numbers">
+        <span class="t-ico">✦</span>
+        <span>Occult Numbers</span>
+      </button>
+      <button class="nav-tab" data-tab="sanctuary">
+        <span class="t-ico">🎧</span>
+        <span>Ritual &amp; Journal</span>
+      </button>
+    </nav>
+
+    <!-- Main Viewport -->
+    <main class="grimoire-viewport">
+      <!-- ==================== TAB 1: TONIGHT'S OMEN ==================== -->
+      <section id="tab-today" class="tab-pane active">
+        <div class="hero-grimoire-card grimoire-frame">
+          <div class="hero-photo-wrap">
+            <img src="./images/vespera_photo.jpg" alt="Vespera Nocturne Crystal Pendulum" class="hero-mystic-img" />
+            <div class="photo-caption-ribbon">🕯️ Live Horary Dowsing · NASA JPL DE405 Ephemeris</div>
+          </div>
+          <div class="hero-text-wrap">
+            <span class="sigil-tag">❖ MIDNIGHT VELVET &amp; SHADOW ASTROLOGY</span>
+            <h2>“The stars do not merely describe your fate — they reveal the hidden motives, karmic contracts, and exact hours of power.”</h2>
+            <p class="hero-p">
+              Cast your <strong>360° Parchment Natal Board</strong>, consult the <strong>Interactive Crystal Pendulum Horary Oracle</strong>, or test <strong>Twin-Chart Relationship Synastry</strong> against tonight’s live planetary degrees.
+            </p>
+            <div class="hero-btn-row">
+              <button class="btn-cast-gold btn-sm" data-goto-tab="pendulum">🔮 Consult Crystal Pendulum</button>
+              <button class="btn-velvet btn-sm" data-goto-tab="synastry">🩸 Run 2-Person Synastry</button>
+              <button class="btn-velvet btn-sm" data-goto-tab="chart">🧭 View 360° Natal Board</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Live Chaldean Planetary Hour Altar -->
+        <div class="grimoire-frame section-box">
+          <div class="section-head-row">
+            <div>
+              <span class="sigil-tag">⏳ LIVE CHALDEAN PLANETARY HOUR ALTAR</span>
+              <h3 id="phour-title">Calculating Planetary Hour...</h3>
+            </div>
+            <span id="phour-badge" class="gold-pill">🕯️ Active Ritual Window</span>
+          </div>
+          <p id="phour-desc" class="quote-parchment"></p>
+          <div id="phour-chips" class="chip-row"></div>
+        </div>
+
+        <!-- Sky Weather + Midnight Horoscopes -->
+        <div class="grimoire-frame section-box">
+          <div class="section-head-row">
+            <div>
+              <span class="sigil-tag">🌑 TONIGHT’S EPHEMERIS &amp; SHADOW TRANSITS</span>
+              <h3 id="sky-headline">Loading Live Ephemeris...</h3>
+            </div>
+            <span id="sky-moon-phase" class="gold-pill">Moon Phase</span>
+          </div>
+          <p id="helena-daily-brief" class="quote-parchment"></p>
+          <div id="sky-pills-row" class="chip-row"></div>
+        </div>
+
+        <!-- Personal Transit Radar -->
+        <div class="grimoire-frame section-box">
+          <div class="section-head-row">
+            <div>
+              <span class="sigil-tag">⚡ PERSONAL TRANSITS TO YOUR NATAL HOUSES</span>
+              <h3>Your Live Karmic &amp; Planetary Triggers</h3>
+            </div>
+            <div class="scrubber-row">
+              <button id="transit-prev-btn" class="btn-icon" title="Previous Day">◀</button>
+              <input type="date" id="transit-date-input" class="date-input" />
+              <button id="transit-next-btn" class="btn-icon" title="Next Day">▶</button>
+              <button id="transit-today-btn" class="btn-velvet btn-xs">Tonight</button>
+            </div>
+          </div>
+          <div id="personal-transits-list" class="stack-list"></div>
+        </div>
+
+        <!-- 12-Sign Midnight Grimoire -->
+        <div class="grimoire-frame section-box">
+          <div class="section-head-row">
+            <div>
+              <span class="sigil-tag">🕯️ 12-SIGN MIDNIGHT DISPATCH</span>
+              <h3>Select Your Rising, Sun, or Moon Sign</h3>
+            </div>
+            <span id="horoscope-date-badge" class="gold-pill">Midnight Drop</span>
+          </div>
+          <div id="sign-selector-grid" class="sign-grid"></div>
+          <div class="lens-bar">
+            <button class="lens-tab active" data-lens="rising_sun_reading">🕯️ Sovereign Fate</button>
+            <button class="lens-tab" data-lens="venus_money_love">💎 2H/8H Wealth &amp; Desire</button>
+            <button class="lens-tab" data-lens="moon_nervous_system">🌙 Shadow &amp; Sanctuary</button>
+          </div>
+          <div id="active-horoscope-card" class="parchment-card"></div>
+        </div>
+
+        <div id="birthday-card-box" class="grimoire-frame section-box"></div>
+      </section>
+
+      <!-- ==================== TAB 2: CRYSTAL PENDULUM HORARY ORACLE (NEW!) ==================== -->
+      <section id="tab-pendulum" class="tab-pane">
+        <div class="grimoire-frame section-box">
+          <div class="section-head-row">
+            <div>
+              <span class="sigil-tag">🔮 INTERACTIVE HORARY ASTRO-DOWSING ORACLE</span>
+              <h2>Crystal Pendulum &amp; Horary Moment Chamber</h2>
+              <p class="muted-sub">
+                In traditional Horary Astrology, the exact astronomical moment a question is asked contains its answer. Type your question or tap an occult preset below to release the crystal pendulum over your 12-Sign Natal Board.
+              </p>
+            </div>
+          </div>
+
+          <div class="preset-questions-row">
+            <button class="preset-q-btn" data-q="Is this connection a true soul contract or a karmic lesson?">🩸 Soul Contract or Karmic Trap?</button>
+            <button class="preset-q-btn" data-q="Should I sign this agreement / launch right now or wait?">💎 Sign / Launch Now or Wait?</button>
+            <button class="preset-q-btn" data-q="Is someone around me hiding envy or ulterior motives?">🐍 Hidden Envy or Ulterior Motives?</button>
+            <button class="preset-q-btn" data-q="Will my 2nd/8th house wealth portal open this month?">🕯️ Next Wealth Portal Timing?</button>
+          </div>
+
+          <form id="pendulum-form" class="pendulum-input-bar">
+            <input type="text" id="pendulum-question-input" placeholder="Ask the Crystal Pendulum any question..." value="Is this connection a true soul contract or a karmic lesson?" required />
+            <button type="submit" class="btn-cast-gold">🔮 Release Crystal Pendulum</button>
+          </form>
+
+          <div class="pendulum-stage-grid">
+            <!-- Animated SVG Crystal Pendulum over Illuminated Parchment Zodiac Board -->
+            <div class="dowsing-board-wrap">
+              <svg id="pendulum-svg-stage" viewBox="0 0 500 500" width="100%" height="100%">
+                <defs>
+                  <radialGradient id="parchmentBoard" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#4A1D2F" />
+                    <stop offset="55%" stop-color="#1E0914" />
+                    <stop offset="100%" stop-color="#09030B" />
+                  </radialGradient>
+                  <radialGradient id="crystalGlow" cx="50%" cy="40%" r="50%">
+                    <stop offset="0%" stop-color="#FFFBEB" />
+                    <stop offset="45%" stop-color="#F59E0B" stop-opacity="0.9" />
+                    <stop offset="100%" stop-color="#C084FC" stop-opacity="0" />
+                  </radialGradient>
+                </defs>
+                <!-- Outer Brass Rings -->
+                <circle cx="250" cy="250" r="228" fill="url(#parchmentBoard)" stroke="#D4AF37" stroke-width="3" />
+                <circle cx="250" cy="250" r="190" fill="none" stroke="#D4AF37" stroke-opacity="0.45" stroke-width="1.4" />
+                <circle cx="250" cy="250" r="128" fill="none" stroke="#F59E0B" stroke-opacity="0.35" stroke-dasharray="4,4" stroke-width="1.2" />
+                <!-- YES / NO / THRESHOLD Cardinal Inscriptions -->
+                <text x="250" y="42" text-anchor="middle" fill="#FDE68A" font-size="13" font-weight="800" letter-spacing="2">✦ YES · SOLAR CLOCKWISE ✦</text>
+                <text x="250" y="468" text-anchor="middle" fill="#FDA4AF" font-size="13" font-weight="800" letter-spacing="2">🕯️ NO · SATURNIAN WIDDERSHINS 🕯️</text>
+                <g id="dowsing-zodiac-ring"></g>
+                <!-- Swinging Crystal Pendulum Group -->
+                <g id="crystal-pendulum-group" class="swing-clockwise">
+                  <line x1="250" y1="250" x2="250" y2="145" stroke="#D4AF37" stroke-width="1.8" stroke-dasharray="2,2" />
+                  <circle cx="250" cy="135" r="38" fill="url(#crystalGlow)" opacity="0.55" />
+                  <!-- 3D Faceted Quartz Crystal Point -->
+                  <polygon points="250,104 264,128 250,168 236,128" fill="#FEF3C7" stroke="#F59E0B" stroke-width="1.8" />
+                  <polygon points="250,104 264,128 250,136" fill="#FDE68A" opacity="0.85" />
+                  <polygon points="250,136 264,128 250,168" fill="#F59E0B" opacity="0.7" />
+                  <circle cx="250" cy="250" r="7" fill="#D4AF37" />
+                </g>
+              </svg>
+            </div>
+
+            <!-- Horary Pendulum Decree Card -->
+            <div id="pendulum-result-box" class="parchment-card"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ==================== TAB 3: TWIN-CHART SYNASTRY (NEW!) ==================== -->
+      <section id="tab-synastry" class="tab-pane">
+        <div class="grimoire-frame section-box">
+          <div class="section-head-row">
+            <div>
+              <span class="sigil-tag">🩸 TWIN-CHART SYNASTRY &amp; KARMIC SOUL-TIE ALCHEMIST</span>
+              <h2>Cross-Chart Obsession, Nodal Contract &amp; Shadow Synastry</h2>
+              <p class="muted-sub">
+                Compare your birth chart with a partner, crush, collaborator, or rival. Calculates real NASA JPL cross-aspects between Venus, Mars, Sun, Moon, Pluto, North/South Nodes, and love/shadow asteroids (<em>Amor, Valentine, Groom, Black Moon Lilith</em>).
+              </p>
+            </div>
+          </div>
+
+          <form id="synastry-form" class="synastry-dual-form">
+            <div class="person-card">
+              <span class="sigil-tag">🕯️ PERSON A (YOUR CHART)</span>
+              <div class="person-fields">
+                <input type="text" id="syn-a-name" placeholder="Your Name" required />
+                <input type="date" id="syn-a-date" required />
+                <input type="time" id="syn-a-time" required />
+                <input type="text" id="syn-a-city" placeholder="Birth City" required />
+              </div>
+            </div>
+            <div class="person-card">
+              <span class="sigil-tag">🩸 PERSON B (PARTNER / CRUSH / RIVAL)</span>
+              <div class="person-fields">
+                <input type="text" id="syn-b-name" placeholder="Their Name" value="Julian" required />
+                <input type="date" id="syn-b-date" value="1993-05-14" required />
+                <input type="time" id="syn-b-time" value="18:30" required />
+                <input type="text" id="syn-b-city" placeholder="Their Birth City" value="London" required />
+              </div>
+            </div>
+            <button type="submit" class="btn-cast-gold" style="grid-column: 1 / -1;">🩸 Calculate Twin-Chart Synastry &amp; Karmic Tie</button>
+          </form>
+
+          <div id="synastry-results-container" style="margin-top: 18px;"></div>
+        </div>
+      </section>
+
+      <!-- ==================== TAB 4: 360° NATAL GRIMOIRE ==================== -->
+      <section id="tab-chart" class="tab-pane">
+        <div class="grimoire-frame section-box">
+          <div class="section-head-row">
+            <div>
+              <span class="sigil-tag">🧭 360° WHOLE-SIGN PARCHMENT &amp; BRASS NATAL BOARD</span>
+              <h2 id="chart-title-heading">Loading Natal Grimoire...</h2>
+              <p id="chart-meta-sub" class="muted-sub"></p>
+            </div>
+            <div class="hero-btn-row">
+              <button id="edit-chart-btn-2" class="btn-velvet btn-sm">✏️ Change Birth Info</button>
+              <button id="download-wheel-btn" class="btn-cast-gold btn-sm">⬇ Save Natal Board SVG</button>
+            </div>
+          </div>
+
+          <div class="wheel-frame-box">
+            <div id="natal-wheel-wrap" class="natal-wheel-svg-box"></div>
+          </div>
+
+          <div class="subtab-bar">
+            <button class="subtab-btn active" data-subtab="sub-big3">🕯️ Big 3 &amp; Nodes</button>
+            <button class="subtab-btn" data-subtab="sub-wealth">💎 2H/8H Wealth</button>
+            <button class="subtab-btn" data-subtab="sub-asteroids">☄️ 8 Asteroids</button>
+            <button class="subtab-btn" data-subtab="sub-shield">🐍 Lilith &amp; Boundaries</button>
+            <button class="subtab-btn" data-subtab="sub-bali">🌙 Lineage &amp; 12H</button>
+          </div>
+
+          <div id="sub-big3" class="subtab-pane active"></div>
+          <div id="sub-wealth" class="subtab-pane"></div>
+          <div id="sub-asteroids" class="subtab-pane"></div>
+          <div id="sub-shield" class="subtab-pane"></div>
+          <div id="sub-bali" class="subtab-pane"></div>
+        </div>
+      </section>
+
+      <!-- ==================== TAB 5: OCCULT NUMBERS ==================== -->
+      <section id="tab-numbers" class="tab-pane">
+        <div class="grimoire-frame section-box">
+          <span class="sigil-tag">✦ OCCULT SYNCHRONICITY &amp; PLANETARY PORTALS</span>
+          <h2>Angel Number &amp; Karmic Cycle Decoder</h2>
+          <p class="muted-sub">Tap the number sequence appearing in your field to decode its planetary ruler and ritual action.</p>
+          <div id="angel-buttons-grid" class="angel-grid"></div>
+          <div id="angel-result-box" class="parchment-card"></div>
+        </div>
+
+        <div class="grimoire-frame section-box">
+          <span class="sigil-tag">🕯️ PERSONAL NUMEROLOGY &amp; TIMING MATRIX</span>
+          <h3>Your Life Path &amp; Personal Year Cycle</h3>
+          <div id="numerology-grid-box" class="num-grid"></div>
+          <div id="numerology-details-box" class="stack-list" style="margin-top: 14px;"></div>
+        </div>
+      </section>
+
+      <!-- ==================== TAB 6: RITUAL & JOURNAL ==================== -->
+      <section id="tab-sanctuary" class="tab-pane">
+        <div class="grimoire-frame section-box">
+          <span class="sigil-tag">🎧 SOMATIC RITUAL SOUND ALTAR</span>
+          <h2>Candlelight Frequency &amp; Nervous-System Co-Regulation</h2>
+          <p class="muted-sub">Select a harmonic frequency during your tarot, dowsing, or evening shadow ritual.</p>
+          <div class="audio-stage">
+            <div id="breathing-orb" class="ritual-orb">
+              <div class="orb-inner">
+                <span id="breath-instruction">Tap Frequency</span>
+              </div>
+            </div>
+            <div class="freq-grid">
+              <button class="freq-btn" data-freq="432">🕯️ 432 Hz · Grounding &amp; Release</button>
+              <button class="freq-btn" data-freq="528">💎 528 Hz · Venusian Magnetism</button>
+              <button class="freq-btn" data-freq="888">👑 888 Hz · 8th House Abundance</button>
+              <button class="freq-btn" data-freq="963">🔮 963 Hz · Crown &amp; Pendulum Clarity</button>
+              <button id="stop-audio-btn" class="btn-velvet btn-sm">⏹ Silence Chime</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="grimoire-frame section-box">
+          <span class="sigil-tag">📓 PRIVATE BOOK OF SHADOWS &amp; TRANSIT LOG</span>
+          <h3>Record Your Pendulum Decrees, Dreams &amp; Synchronicities</h3>
+          <form id="grimoire-form" class="form-stack" style="margin-top: 10px;">
+            <input type="text" id="grimoire-title" class="form-input" placeholder="Entry Title (e.g. Full Moon Pendulum Decree, 888 Omen)" required />
+            <select id="grimoire-tag" class="form-input">
+              <option value="🔮 Pendulum Decree">🔮 Pendulum Decree</option>
+              <option value="🩸 Synastry Insight">🩸 Synastry Insight</option>
+              <option value="💎 2H/8H Wealth Portal">💎 2H/8H Wealth Portal</option>
+              <option value="🌙 12H Dream Transmission">🌙 12H Dream Transmission</option>
+            </select>
+            <textarea id="grimoire-notes" class="form-input" rows="3" placeholder="Write your reflection..." required></textarea>
+            <button type="submit" class="btn-cast-gold">🕯️ Seal Entry in Book of Shadows</button>
+          </form>
+          <div id="grimoire-entries-list" class="stack-list" style="margin-top: 16px;"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- Birth Data Modal -->
+  <div id="birth-modal" class="modal-backdrop hidden">
+    <div class="modal-card grimoire-frame">
+      <div class="section-head-row">
+        <div>
+          <span class="sigil-tag">🧭 EXACT NATAL COORDINATES</span>
+          <h3>Cast Your Personal Birth Chart</h3>
+        </div>
+        <button id="close-birth-modal-btn" class="btn-icon">✕</button>
+      </div>
+      <p class="muted-sub">Enter your birth date, exact time, and city (11M+ locations worldwide).</p>
+      <form id="birth-form" class="form-stack">
+        <label class="field-box">
+          <span>Your Name</span>
+          <input type="text" id="input-name" required />
+        </label>
+        <div class="form-row-2">
+          <label class="field-box">
+            <span>Birth Date</span>
+            <input type="date" id="input-date" required />
+          </label>
+          <label class="field-box">
+            <span>Exact Birth Time</span>
+            <input type="time" id="input-time" required />
+          </label>
+        </div>
+        <label class="field-box">
+          <span>Birth City (Worldwide Geocoder)</span>
+          <input type="text" id="input-city" placeholder="e.g. New Orleans, London, New York, Paris" required />
+        </label>
+        <button type="submit" class="btn-cast-gold" style="width: 100%; margin-top: 8px;">🕯️ Cast My Natal Grimoire</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="./engine-browser.js"></script>
+  <script src="./app.js"></script>
+  <script defer src="/_vercel/insights/script.js"></script>
+</body>
+</html>

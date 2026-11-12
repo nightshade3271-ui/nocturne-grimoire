@@ -1,0 +1,12 @@
+{
+  "name": "nocturne-grimoire-vespera",
+  "version": "1.0.0",
+  "description": "Nocturne Grimoire 🕯️ — Dark Mystic Horary Pendulum, Twin-Chart Synastry & NASA JPL Ephemeris by Vespera Nocturne (@vesperanocturne)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "astronomy-engine": "^2.1.19"
+  }
+}
