@@ -31,12 +31,12 @@ const ZODIAC_RING = [
 
 
 // ---------------------------------------------------------------------------
-// Grimoire Pass ($4.99/mo). Free: Tonight's Omen. Premium: everything else.
+// Grimoire Pass ($4.99/mo). Free: Tonight's Omen + Ritual & Journal. Premium: the rest.
 // ---------------------------------------------------------------------------
 const Pass = (() => {
   const KEY = 'nocturne_grimoire_pass_v1';
   const BUY_URL = 'https://buy.stripe.com/4gMbJ22c77vQa9r6FL7ss12';
-  const PREMIUM_TABS = ['pendulum', 'synastry', 'chart', 'numbers', 'sanctuary'];
+  const PREMIUM_TABS = ['pendulum', 'synastry', 'chart', 'numbers'];
   const NAMES = { pendulum: 'Crystal Pendulum', synastry: 'Twin Synastry', chart: '360° Natal Wheel', numbers: 'Occult Numbers', sanctuary: 'Ritual & Journal' };
   let token = null;
   const read = () => { try { return localStorage.getItem(KEY); } catch (_) { return null; } };
@@ -110,9 +110,9 @@ const Pass = (() => {
       <div role="dialog" aria-modal="true" style="max-width:440px;width:100%;background:linear-gradient(160deg,#2a1020,#140a12);border:1.5px solid #F59E0B;border-radius:18px;padding:26px 22px;color:#f3e9d2;text-align:center;box-shadow:0 30px 80px rgba(0,0,0,.7)">
         <div style="font-size:12px;letter-spacing:3px;color:#F59E0B;font-weight:800">GRIMOIRE PASS</div>
         <h3 style="font-family:'Cormorant Garamond',Georgia,serif;font-size:30px;margin:6px 0 8px">${tabId ? 'Unlock ' + NAMES[tabId] : 'Open every chamber'}</h3>
-        <p style="color:#d8c9a8;margin:0 0 14px">Tonight's Omen stays free. The Pass opens the rest of the Grimoire:</p>
+        <p style="color:#d8c9a8;margin:0 0 14px">Tonight's Omen and your Ritual &amp; Journal stay free. The Pass opens the deeper chambers:</p>
         <ul style="text-align:left;margin:0 auto 18px;padding-left:20px;line-height:1.8;color:#f3e9d2;max-width:320px">
-          <li>🔮 Crystal Pendulum horary questions</li><li>🩸 Two-person synastry</li><li>🧭 Your 360° natal wheel</li><li>✦ Occult numbers</li><li>🎧 Ritual sounds &amp; private journal</li>
+          <li>🔮 Crystal Pendulum horary questions</li><li>🩸 Two-person synastry</li><li>🧭 Your 360° natal wheel</li><li>✦ Occult numbers</li>
         </ul>
         <a href="${BUY_URL}" style="display:block;background:linear-gradient(135deg,#F59E0B,#D4AF37);color:#170711;font-weight:800;text-decoration:none;border-radius:999px;padding:14px 18px;font-size:16px">Start my Pass · $4.99/month</a>
         <p style="font-size:12px;color:#a8977a;margin:12px 0 0">Renews monthly. Cancel anytime in two clicks. For reflection and entertainment.</p>
