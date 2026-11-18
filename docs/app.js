@@ -29,6 +29,113 @@ const ZODIAC_RING = [
   { sign: 'Pisces', glyph: '♓' }
 ];
 
+
+// ---------------------------------------------------------------------------
+// Grimoire Pass ($4.99/mo). Free: Tonight's Omen. Premium: everything else.
+// ---------------------------------------------------------------------------
+const Pass = (() => {
+  const KEY = 'nocturne_grimoire_pass_v1';
+  const BUY_URL = 'https://buy.stripe.com/4gMbJ22c77vQa9r6FL7ss12';
+  const PREMIUM_TABS = ['pendulum', 'synastry', 'chart', 'numbers', 'sanctuary'];
+  const NAMES = { pendulum: 'Crystal Pendulum', synastry: 'Twin Synastry', chart: '360° Natal Wheel', numbers: 'Occult Numbers', sanctuary: 'Ritual & Journal' };
+  let token = null;
+  const read = () => { try { return localStorage.getItem(KEY); } catch (_) { return null; } };
+  const write = (t) => { try { t ? localStorage.setItem(KEY, t) : localStorage.removeItem(KEY); } catch (_) {} };
+  const expOf = (t) => { try { return JSON.parse(atob(t.split('.')[0].replace(/-/g, '+').replace(/_/g, '/'))).exp; } catch (_) { return 0; } };
+  const active = () => !!token && expOf(token) > Date.now();
+
+  async function post(url, body) {
+    const r = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+    return { status: r.status, data: await r.json().catch(() => ({})) };
+  }
+
+  async function init() {
+    const params = new URLSearchParams(location.search);
+    const sessionId = params.get('unlock');
+    if (sessionId) {
+      try {
+        const r = await fetch('/api/unlock?session_id=' + encodeURIComponent(sessionId));
+        const d = await r.json();
+        if (d.success) { token = d.token; write(token); toast('🕯️ Welcome to the full Grimoire. Every chamber is open.'); }
+        else toast('We could not confirm that payment yet. Refresh in a minute, or email readings@vespera.cards.');
+      } catch (_) {}
+      params.delete('unlock');
+      history.replaceState(null, '', location.pathname + (params.toString() ? '?' + params : ''));
+    } else {
+      token = read();
+      if (token) {
+        const { status, data } = await post('/api/pass', { token }).catch(() => ({ status: 0 }));
+        if (status === 200 && data.token) { token = data.token; write(token); }
+        else if (status === 402 || status === 401) { token = null; write(null); }
+        // network or server hiccup: keep the current token until it expires
+      }
+    }
+    renderBadge();
+  }
+
+  async function fetchJson(url, opts = {}) {
+    const r = await fetch(url, { ...opts, headers: { 'Content-Type': 'application/json', 'X-Grimoire-Pass': token || '', ...(opts.headers || {}) } });
+    if (r.status === 402) { token = null; write(null); renderBadge(); showPaywall(); return null; }
+    return r.json();
+  }
+
+  function renderBadge() {
+    document.querySelectorAll('.premium-tab').forEach(b => b.classList.toggle('locked', !active()));
+    let el = document.getElementById('pass-badge');
+    if (!el) {
+      el = document.createElement('div');
+      el.id = 'pass-badge';
+      el.style.cssText = 'display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:10px auto 0;font-size:13px';
+      const nav = document.querySelector('.nav-tab')?.parentElement;
+      nav ? nav.insertAdjacentElement('afterend', el) : document.body.prepend(el);
+    }
+    el.innerHTML = active()
+      ? '<span style="color:#F59E0B;font-weight:700">✦ Grimoire Pass active</span><button id="pass-manage" style="background:none;border:1px solid #6b5a3a;color:#d8c9a8;border-radius:999px;padding:4px 12px;cursor:pointer">Manage or cancel</button>'
+      : '<button id="pass-open" style="background:linear-gradient(135deg,#F59E0B,#BE185D);border:0;color:#170711;font-weight:800;border-radius:999px;padding:7px 16px;cursor:pointer">🔓 Unlock the full Grimoire · $4.99/mo</button>';
+    el.querySelector('#pass-open')?.addEventListener('click', () => showPaywall());
+    el.querySelector('#pass-manage')?.addEventListener('click', manage);
+  }
+
+  async function manage() {
+    const { data } = await post('/api/portal', { token }).catch(() => ({ data: {} }));
+    location.href = data.url || 'https://billing.stripe.com/p/login/8x2fZibMH6rMftL7JP7ss00';
+  }
+
+  function showPaywall(tabId) {
+    document.getElementById('paywall')?.remove();
+    const wrap = document.createElement('div');
+    wrap.id = 'paywall';
+    wrap.style.cssText = 'position:fixed;inset:0;z-index:9999;background:rgba(8,4,10,.82);display:grid;place-items:center;padding:16px';
+    wrap.innerHTML = `
+      <div role="dialog" aria-modal="true" style="max-width:440px;width:100%;background:linear-gradient(160deg,#2a1020,#140a12);border:1.5px solid #F59E0B;border-radius:18px;padding:26px 22px;color:#f3e9d2;text-align:center;box-shadow:0 30px 80px rgba(0,0,0,.7)">
+        <div style="font-size:12px;letter-spacing:3px;color:#F59E0B;font-weight:800">GRIMOIRE PASS</div>
+        <h3 style="font-family:'Cormorant Garamond',Georgia,serif;font-size:30px;margin:6px 0 8px">${tabId ? 'Unlock ' + NAMES[tabId] : 'Open every chamber'}</h3>
+        <p style="color:#d8c9a8;margin:0 0 14px">Tonight's Omen stays free. The Pass opens the rest of the Grimoire:</p>
+        <ul style="text-align:left;margin:0 auto 18px;padding-left:20px;line-height:1.8;color:#f3e9d2;max-width:320px">
+          <li>🔮 Crystal Pendulum horary questions</li><li>🩸 Two-person synastry</li><li>🧭 Your 360° natal wheel</li><li>✦ Occult numbers</li><li>🎧 Ritual sounds &amp; private journal</li>
+        </ul>
+        <a href="${BUY_URL}" style="display:block;background:linear-gradient(135deg,#F59E0B,#D4AF37);color:#170711;font-weight:800;text-decoration:none;border-radius:999px;padding:14px 18px;font-size:16px">Start my Pass · $4.99/month</a>
+        <p style="font-size:12px;color:#a8977a;margin:12px 0 0">Renews monthly. Cancel anytime in two clicks. For reflection and entertainment.</p>
+        <p style="font-size:12px;margin:10px 0 0"><a href="https://billing.stripe.com/p/login/8x2fZibMH6rMftL7JP7ss00" style="color:#d8c9a8">Already subscribed on another device? Manage your Pass</a></p>
+        <button id="paywall-close" style="margin-top:14px;background:none;border:0;color:#a8977a;cursor:pointer;font-size:14px">Not now</button>
+      </div>`;
+    document.body.appendChild(wrap);
+    const close = () => wrap.remove();
+    wrap.addEventListener('click', (e) => { if (e.target === wrap) close(); });
+    wrap.querySelector('#paywall-close').addEventListener('click', close);
+  }
+
+  function toast(msg) {
+    const t = document.createElement('div');
+    t.textContent = msg;
+    t.style.cssText = 'position:fixed;left:50%;bottom:24px;transform:translateX(-50%);z-index:9999;background:#2a1020;border:1px solid #F59E0B;color:#f3e9d2;padding:12px 18px;border-radius:12px;max-width:90vw;box-shadow:0 10px 30px rgba(0,0,0,.6)';
+    document.body.appendChild(t);
+    setTimeout(() => t.remove(), 6000);
+  }
+
+  return { PREMIUM_TABS, active, init, fetchJson, showPaywall };
+})();
+
 const state = {
   profile: loadProfile(),
   natalData: null,
@@ -81,6 +188,7 @@ function syncProfileInputs() {
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
+  await Pass.init();
   syncProfileInputs();
   initTabs();
   initSubtabs();
@@ -94,7 +202,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   await Promise.all([
     fetchAndRenderNatal(),
     fetchAndRenderDaily(),
-    fetchAndRenderPendulum('Is this connection a true soul contract or a karmic lesson?'),
+    fetchAndRenderPendulum('What am I avoiding deciding right now?'),
     fetchAndRenderSynastry(),
     fetchAndRenderNumbers('444')
   ]);
@@ -110,12 +218,17 @@ function initTabs() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
+  const go = (tabId) => {
+    if (Pass.PREMIUM_TABS.includes(tabId) && !Pass.active()) return Pass.showPaywall(tabId);
+    activateTab(tabId);
+  };
   navBtns.forEach(btn => {
-    btn.addEventListener('click', () => activateTab(btn.dataset.tab));
+    if (Pass.PREMIUM_TABS.includes(btn.dataset.tab)) { btn.classList.add('premium-tab'); btn.classList.toggle('locked', !Pass.active()); }
+    btn.addEventListener('click', () => go(btn.dataset.tab));
   });
 
   document.querySelectorAll('[data-goto-tab]').forEach(btn => {
-    btn.addEventListener('click', () => activateTab(btn.dataset.gotoTab));
+    btn.addEventListener('click', () => go(btn.dataset.gotoTab));
   });
 }
 
@@ -254,20 +367,11 @@ async function fetchAndRenderPendulum(question) {
   try {
     const payload = {
       ...state.profile,
-      question: question || 'Is this connection a true soul contract or a karmic lesson?'
+      question: question || 'What am I avoiding deciding right now?'
     };
-    let data;
-    if (window.NocturneGrimoireAPI) {
-      data = await window.NocturneGrimoireAPI.pendulum(payload);
-    } else {
-      const res = await fetch('/api/pendulum', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
-      data = await res.json();
-    }
-    if (!data.success) return;
+    if (!Pass.active()) return;
+    const data = await Pass.fetchJson('/api/pendulum', { method: 'POST', body: JSON.stringify(payload) });
+    if (!data || !data.success) return;
 
     const pGroup = document.getElementById('crystal-pendulum-group');
     if (pGroup) {
@@ -328,18 +432,9 @@ async function fetchAndRenderSynastry() {
       city: document.getElementById('syn-b-city')?.value || 'London'
     };
 
-    let data;
-    if (window.NocturneGrimoireAPI) {
-      data = await window.NocturneGrimoireAPI.synastry(personA, personB);
-    } else {
-      const res = await fetch('/api/synastry', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ personA, personB })
-      });
-      data = await res.json();
-    }
-    if (!data.success) return;
+    if (!Pass.active()) return;
+    const data = await Pass.fetchJson('/api/synastry', { method: 'POST', body: JSON.stringify({ personA, personB }) });
+    if (!data || !data.success) return;
 
     const wrap = document.getElementById('synastry-results-container');
     if (!wrap) return;
@@ -649,14 +744,9 @@ function renderHoroscopeViewer() {
 async function fetchAndRenderNumbers(code) {
   try {
     state.selectedAngel = code || '444';
-    let data;
-    if (window.NocturneGrimoireAPI) {
-      data = await window.NocturneGrimoireAPI.numbers(state.selectedAngel, state.profile.date);
-    } else {
-      const res = await fetch(`/api/numbers?code=${encodeURIComponent(state.selectedAngel)}&birth_date=${encodeURIComponent(state.profile.date)}`);
-      data = await res.json();
-    }
-    if (!data.success) return;
+    if (!Pass.active()) return;
+    const data = await Pass.fetchJson(`/api/numbers?code=${encodeURIComponent(state.selectedAngel)}&birth_date=${encodeURIComponent(state.profile.date)}`);
+    if (!data || !data.success) return;
 
     const allCodes = ['111', '222', '333', '444', '555', '666', '777', '888', '999', '000'];
     const grid = document.getElementById('angel-buttons-grid');

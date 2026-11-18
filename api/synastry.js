@@ -1,3 +1,4 @@
+const { requirePass } = require('../lib/pass.js');
 const { resolveCityAsync } = require('../lib/geo.js');
 const { calculateNatalChart } = require('../lib/ephemeris.js');
 const { calculateTwinSynastry } = require('../lib/vespera_engine.js');
@@ -10,6 +11,7 @@ module.exports = async (req, res) => {
     res.statusCode = 204;
     return res.end();
   }
+  if (!requirePass(req, res)) return;
   try {
     let payload = req.body;
     if (typeof payload === 'string') payload = JSON.parse(payload || '{}');

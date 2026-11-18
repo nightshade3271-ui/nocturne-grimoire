@@ -1,6 +1,8 @@
-﻿const { ANGEL_NUMBERS, calculateCosmicNumbers } = require('../lib/vespera_engine.js');
+const { requirePass } = require('../lib/pass.js');
+const { ANGEL_NUMBERS, calculateCosmicNumbers } = require('../lib/vespera_engine.js');
 
 module.exports = async (req, res) => {
+  if (!requirePass(req, res)) return;
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Content-Type', 'application/json; charset=utf-8');
 

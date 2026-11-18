@@ -779,3 +779,6 @@ h1, h2, h3 {
   .synastry-score-grid, .num-grid { grid-template-columns: repeat(2, 1fr); }
   .sign-grid { grid-template-columns: repeat(4, 1fr); }
 }
+
+/* Grimoire Pass: lock icon on premium tabs for non-members */
+.nav-tab.premium-tab.locked::after { content: ' 🔒'; font-size: .8em; opacity: .85; }

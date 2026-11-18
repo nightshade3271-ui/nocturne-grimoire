@@ -8,6 +8,9 @@ const dailyHandler = require('./api/daily.js');
 const numbersHandler = require('./api/numbers.js');
 const pendulumHandler = require('./api/pendulum.js');
 const synastryHandler = require('./api/synastry.js');
+const unlockHandler = require('./api/unlock.js');
+const passHandler = require('./api/pass.js');
+const portalHandler = require('./api/portal.js');
 
 const PORT = process.env.PORT || 3377;
 const PUBLIC_DIR = path.join(__dirname, 'public');
@@ -40,6 +43,9 @@ const server = http.createServer((req, res) => {
       if (pathname === '/api/numbers') return numbersHandler(req, res);
       if (pathname === '/api/pendulum') return pendulumHandler(req, res);
       if (pathname === '/api/synastry') return synastryHandler(req, res);
+      if (pathname === '/api/unlock') return unlockHandler(req, res);
+      if (pathname === '/api/pass') return passHandler(req, res);
+      if (pathname === '/api/portal') return portalHandler(req, res);
       res.statusCode = 404;
       res.end(JSON.stringify({ error: 'API route not found' }));
     });
