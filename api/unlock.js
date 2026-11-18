@@ -11,5 +11,5 @@ module.exports = async (req, res) => {
     const isPass = (s.line_items?.data || []).some((li) => li.price?.id === PRICE_ID);
     if (!isPass || s.status !== 'complete' || !s.customer) return send(402, { success: false, error: 'not a completed Grimoire Pass checkout' });
     send(200, { success: true, token: issue(s.customer) });
-  } catch (e) { send(500, { success: false, error: e.message }); }
+  } catch (e) { console.error('unlock failed:', e.message); send(500, { success: false, error: 'could not confirm payment right now' }); }
 };

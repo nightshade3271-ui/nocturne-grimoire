@@ -1,19 +1,18 @@
 {
-  "name": "Astral Velvet ✦ by Celeste Vance",
-  "short_name": "Astral Velvet",
-  "description": "Personal live ephemeris, 360° Natal Chart Dossier, 8 Signature Asteroids & Somatic Sound Sanctuary by Celeste Vance (@celestevance.astro).",
+  "name": "Nocturne Grimoire · Vespera Nocturne",
+  "short_name": "Grimoire",
+  "description": "Live ephemeris, crystal pendulum, synastry, natal wheel and ritual journal by Vespera Nocturne (@vespera.nocturne.26). For reflection and entertainment.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#060913",
-  "theme_color": "#0B1022",
+  "background_color": "#08030B",
+  "theme_color": "#08030B",
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "/images/celeste_avatar.svg",
-      "sizes": "240x240",
-      "type": "image/svg+xml",
-      "purpose": "any maskable"
+      "src": "/images/vespera_photo.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any"
     }
   ]
 }
-

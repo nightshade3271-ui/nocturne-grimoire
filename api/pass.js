@@ -11,5 +11,5 @@ module.exports = async (req, res) => {
     if (!p) return send(401, { success: false, error: 'invalid pass' });
     if (!(await hasActivePass(p.c))) return send(402, { success: false, paywall: true, error: 'subscription not active' });
     send(200, { success: true, token: issue(p.c) });
-  } catch (e) { send(500, { success: false, error: e.message }); }
+  } catch (e) { console.error('pass check failed:', e.message); send(500, { success: false, error: 'could not check pass right now' }); }
 };

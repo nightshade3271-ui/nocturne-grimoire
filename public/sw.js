@@ -1,12 +1,12 @@
-const CACHE_NAME = 'astral-velvet-v1';
+const CACHE_NAME = 'nocturne-grimoire-v2';
 const ASSETS = [
   '/',
   '/index.html',
   '/style.css',
   '/app.js',
   '/manifest.json',
-  '/images/celeste_avatar.svg',
-  '/images/celeste_hero.svg'
+  '/images/vespera_photo.jpg',
+  '/images/vespera_hero.jpg'
 ];
 
 self.addEventListener('install', (e) => {
