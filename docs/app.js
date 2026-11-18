@@ -1,5 +1,5 @@
 /**
- * Nocturne Grimoire 🕯️ by Vespera Nocturne (@vesperanocturne) — Frontend Controller
+ * Nocturne Grimoire 🕯️ by Vespera Nocturne (@vespera.nocturne.26) — Frontend Controller
  */
 
 const STORAGE_KEYS = {

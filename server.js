@@ -57,5 +57,5 @@ const server = http.createServer((req, res) => {
 });
 
 server.listen(PORT, () => {
-  console.log(`\n🕯️🔮 Nocturne Grimoire (@vesperanocturne) Dark Mystic PWA live at:\n   👉 http://localhost:${PORT}\n`);
+  console.log(`\n🕯️🔮 Nocturne Grimoire (@vespera.nocturne.26) Dark Mystic PWA live at:\n   👉 http://localhost:${PORT}\n`);
 });
